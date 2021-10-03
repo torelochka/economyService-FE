@@ -1,7 +1,12 @@
 # economyService-FE
 
-[Here](https://dantrofimov.github.io/economyService-FE/#/) u can find deploy of FE part
+### [Here](https://dantrofimov.github.io/economyService-FE/#/) u can find deploy of FE part
 
-[Figma - layouts](https://www.figma.com/file/FaFpzn2W8wPESFqpTpO90q/Layout)
+List of available routes:
+- `/add-group`
+- `/add-m8`
+- `/m8s`
 
-[Schema](https://www.figma.com/file/JGlyGpNkHUfpnLKwYhVPDw/m8-chkr?node-id=0%3A1)
+### [Figma - layouts](https://www.figma.com/file/FaFpzn2W8wPESFqpTpO90q/Layout)
+
+### [Schema](https://www.figma.com/file/JGlyGpNkHUfpnLKwYhVPDw/m8-chkr?node-id=0%3A1)
