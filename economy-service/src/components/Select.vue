@@ -3,6 +3,8 @@
             class="style-chooser"
             :placeholder="placeholder"
             :options="options"
+            v-model="currentOption"
+            @input="handleChangeOption"
     />
 </template>
 
@@ -11,6 +13,16 @@
 
     export default {
         name: "Select",
+        data() {
+            return {
+                currentOption: '',
+            }
+        },
+        methods:  {
+            handleChangeOption() {
+                this.$emit('update-option', this.currentOption)
+            }
+        },
         props: {
             placeholder: {
                 type: String,

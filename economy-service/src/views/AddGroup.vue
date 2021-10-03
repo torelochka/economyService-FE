@@ -1,9 +1,10 @@
 <template>
   <Container :width="300">
     <h1 class="add-group-title">attach group's photo:</h1>
-    <file-input placeholder="d&d or select a photo..."/>
-    <Select class="select" placeholder="select a group" :options="mockedOptions"/>
+    <file-input placeholder="d&d or click & select a photo..." @change-file="handleChangeFile"/>
+    <Select class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
     <Button class="button">submit</Button>
+    {{ group }}
   </Container>
 </template>
 
@@ -23,7 +24,17 @@ export default {
   },
   data() {
     return {
+      group: '',
+      files: [],
       mockedOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
+    }
+  },
+  methods: {
+    handleChangeFile(value) {
+      this.files = value;
+    },
+    handleChangeOption(value) {
+      this.group = value;
     }
   }
 }

@@ -14,6 +14,16 @@ const routes = [
     path: '/add-group',
     name: '',
     component: () => import(  '../views/AddGroup.vue')
+  },
+  {
+    path: '/add-m8',
+    name: '',
+    component: () => import(  '../views/AddM8.vue')
+  },
+  {
+    path: '/m8s',
+    name: '',
+    component: () => import(  '../views/StudentsList.vue')
   }
 ]
 

@@ -37,6 +37,7 @@ export default {
     methods: {
         onChange() {
             this.filelist = [...this.$refs.file.files];
+            this.$emit('change-file', this.filelist);
         },
         remove(i) {
             this.filelist.splice(i, 1);
