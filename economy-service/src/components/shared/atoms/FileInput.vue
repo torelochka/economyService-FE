@@ -1,6 +1,6 @@
 <template>
     <div class="dnd-container" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-        <input type="file" :multiple="multiple" name="fields[assetsFieldHandle][]" id="assetsFieldHandle"
+        <input type="file" :multiple="isMultiple" :name="name" id="assetsFieldHandle"
                class="file-input" @change="onChange" ref="file" accept=".jpg,.jpeg,.png" />
 
         <label v-if="!filelist.length" for="assetsFieldHandle" class="block cursor-pointer">
@@ -24,9 +24,12 @@ export default {
         placeholder: {
             type: String,
         },
-        multiple: {
+        isMultiple: {
             type: Boolean,
             default: false,
+        },
+        name: {
+            type: String,
         }
     },
     data() {

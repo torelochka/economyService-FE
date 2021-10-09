@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Container from "../components/Container";
-import TextInput from "../components/TextInput";
-import Button from "../components/Button";
+import Container from "../components/shared/atoms/Container";
+import TextInput from "../components/shared/atoms/TextInput";
+import Button from "../components/shared/atoms/Button";
 
 export default {
   name: 'Auth',

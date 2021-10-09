@@ -1,17 +1,17 @@
 <template>
     <Container :width="300">
         <h1 class="add-group-title">attach photo of each student from the group:</h1>
-        <file-input multiple placeholder="d&d or click & select a photos of students..."/>
+        <FileInput isMultiple name="mates" placeholder="d&d or click & select a photos of students..."/>
         <Select class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
         <Button class="button">submit</Button>
     </Container>
 </template>
 
 <script>
-    import Container from "../components/Container";
-    import FileInput from "../components/FileInput";
-    import Select from "../components/Select";
-    import Button from "../components/Button";
+    import Container from "../components/shared/atoms/Container";
+    import FileInput from "../components/shared/atoms/FileInput";
+    import Select from "../components/shared/atoms/Select";
+    import Button from "../components/shared/atoms/Button";
 
     export default {
         name: "AddGroup",

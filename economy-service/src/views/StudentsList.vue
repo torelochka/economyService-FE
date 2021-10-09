@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Container from "../components/Container";
+    import Container from "../components/shared/atoms/Container";
     export default {
         components: {
             Container,
