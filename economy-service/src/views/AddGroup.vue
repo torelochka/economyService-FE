@@ -5,10 +5,6 @@
       <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
       <Select is-multiple class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
       <Button :on-click="submit" class="button">submit</Button>
-      <div>
-        {{ groups }}
-        {{ photos.map(item => item.name) }}
-      </div>
     </Container>
     <Navigation active-tab-init="Groups"/>
   </div>

@@ -8,9 +8,21 @@ export default new Vuex.Store({
         recognizedStudents: [],
     },
     actions: {
-        sendGroupData(ctx, { groups, photos }) {
-            console.log("groups: ", groups);
-            console.log("photos: ", photos);
+        async sendGroupData(ctx, { groups, photos }) {
+            let formData = new FormData();
+
+            formData.append("groupNumbers", groups);
+            formData.append("studentsImages", photos);
+            console.log(process.env.VUE_APP_CORS_URL);
+
+            let response = await fetch(`${process.env.VUE_APP_CORS_URL}${process.env.VUE_APP_BASE_URL}/check`, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            });
+            let result = await response;
+
+            console.log(result);
         }
     }
 })
