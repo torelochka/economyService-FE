@@ -40,6 +40,7 @@ export default {
     methods: {
         onChange() {
             this.filelist = [...this.$refs.file.files];
+            // pbbly will emit native filelist
             this.$emit('change-file', this.filelist);
         },
         remove(i) {

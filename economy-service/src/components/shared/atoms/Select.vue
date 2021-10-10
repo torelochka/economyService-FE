@@ -3,6 +3,7 @@
             class="style-chooser"
             :placeholder="placeholder"
             :options="options"
+            :multiple="isMultiple"
             v-model="currentOption"
             @input="handleChangeOption"
     />
@@ -29,6 +30,10 @@
             },
             options: {
                 type: Array,
+            },
+            isMultiple: {
+                type: Boolean,
+                default: false,
             }
         }
     }
@@ -57,6 +62,15 @@
 
 .style-chooser .vs__search::placeholder {
     color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.style-chooser .vs__selected {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0;
     font-weight: 500;
     font-size: 20px;
 }
