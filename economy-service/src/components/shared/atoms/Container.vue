@@ -21,7 +21,6 @@ export default {
   margin: 0 auto;
   min-height: calc(93vh - 120px);
   width: 200px;
-  padding-top: 50px;
-  padding-bottom: 70px;
+  padding: 50px 20px 70px;
 }
 </style>
