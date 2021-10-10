@@ -2,9 +2,13 @@
   <div>
     <Container :width="300">
       <h1 class="add-group-title">attach group's photo:</h1>
-      <FileInput placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
+      <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
       <Select is-multiple class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
-      <Button class="button">submit</Button>
+      <Button :on-click="submit" class="button">submit</Button>
+      <div>
+        {{ groups }}
+        {{ photos.map(item => item.name) }}
+      </div>
     </Container>
     <Navigation active-tab-init="Groups"/>
   </div>
@@ -16,6 +20,8 @@ import FileInput from "../components/shared/atoms/FileInput";
 import Select from "../components/shared/atoms/Select";
 import Button from "../components/shared/atoms/Button";
 import Navigation from "../components/shared/molucules/Navigation";
+
+import { mapActions } from 'vuex'
 
 export default {
   name: "AddGroup",
@@ -29,16 +35,20 @@ export default {
   data() {
     return {
       groups: '',
-      files: [],
+      photos: [],
       mockedOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
     }
   },
   methods: {
+    ...mapActions(["sendGroupData"]),
     handleChangeFile(value) {
-      this.files = value;
+      this.photos = value;
     },
     handleChangeOption(value) {
       this.groups = value;
+    },
+    submit() {
+      this.sendGroupData({ groups: this.groups, photos: this.photos });
     }
   }
 }
