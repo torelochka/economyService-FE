@@ -5,7 +5,7 @@
     <form action="" class="auth-form">
       <TextInput name="email" type="email" placeholder="gmail"/>
       <TextInput name="password" type="password" placeholder="password" />
-      <Button type="submit">login</Button>
+      <Button :on-click="() => $router.push('/add-group')">login</Button>
     </form>
   </Container>
 </template>

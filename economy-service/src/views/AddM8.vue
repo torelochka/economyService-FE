@@ -1,10 +1,13 @@
 <template>
-    <Container :width="300">
-        <h1 class="add-group-title">attach photo of each student from the group:</h1>
-        <FileInput isMultiple name="mates" placeholder="d&d or click & select a photos of students..."/>
-        <Select class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
-        <Button class="button">submit</Button>
-    </Container>
+    <div>
+        <Container :width="300">
+            <h1 class="add-group-title">attach photo of each student from the group:</h1>
+            <FileInput isMultiple name="mates" placeholder="d&d or click & select a photos of students..."/>
+            <Select class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
+            <Button class="button">submit</Button>
+        </Container>
+        <Navigation active-tab-init="Mates" />
+    </div>
 </template>
 
 <script>
@@ -12,6 +15,7 @@
     import FileInput from "../components/shared/atoms/FileInput";
     import Select from "../components/shared/atoms/Select";
     import Button from "../components/shared/atoms/Button";
+    import Navigation from "../components/shared/molucules/Navigation";
 
     export default {
         name: "AddGroup",
@@ -20,6 +24,7 @@
             FileInput,
             Select,
             Button,
+            Navigation,
         },
         data() {
             return {
