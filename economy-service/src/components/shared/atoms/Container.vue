@@ -21,6 +21,12 @@ export default {
   margin: 0 auto;
   min-height: calc(93vh - 120px);
   width: 200px;
-  padding: 50px 10% 70px;
+  padding: 50px 0 70px;
+}
+
+@media (max-width: 320px) {
+  .container {
+    width: 280px !important;
+  }
 }
 </style>
