@@ -11,14 +11,18 @@ export default new Vuex.Store({
         async sendGroupData(ctx, { groups, photos }) {
             let formData = new FormData();
 
-            formData.append("groupNumbers", groups);
+            formData.append("groupNumbers", [groups]);
             formData.append("studentsImages", photos);
             console.log(process.env.VUE_APP_CORS_URL);
 
-            let response = await fetch(`${process.env.VUE_APP_CORS_URL}${process.env.VUE_APP_BASE_URL}/check`, {
+            let response = await fetch(`${process.env.VUE_APP_BASE_URL}check`, {
                 method: "POST",
                 mode: "no-cors",
-                body: formData
+                body: formData,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "*/*",
+                }
             });
             let result = await response;
 
