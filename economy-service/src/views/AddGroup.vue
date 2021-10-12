@@ -2,10 +2,12 @@
   <div>
     <Container :width="300">
       <div v-if="isFetching">
-        <StudentsList
-                :students="recognizedStudents"
-                v-if="recognizedStudents.length"
-        />
+        <div v-if="recognizedStudents.length">
+          <StudentsList
+                  :students="recognizedStudents"
+          />
+          <p class="back-link" @click="goBack">&#8656; back to form</p>
+        </div>
         <div class="loader" v-else>
           <PulseLoader :loading="true" color="#81007f"/>
           <p>Processing <br> images...</p>
@@ -68,7 +70,11 @@ export default {
     },
     async submit() {
       this.isFetching = true;
-      await this.sendGroupData({ groups: this.groups, photos: this.photos, discipline: this.discipline });}
+      await this.sendGroupData({ groups: this.groups, photos: this.photos, discipline: this.discipline });
+    },
+    goBack() {
+      this.isFetching = false;
+    }
   },
   computed: {
     ...mapState(['recognizedStudents'])
@@ -102,5 +108,12 @@ export default {
   font-size: 20px;
   height: 80vh;
   justify-content: center;
+}
+
+.back-link {
+  text-align: center;
+  font-size: 20px;
+  text-decoration: underline;
+  font-weight: bold;
 }
 </style>
