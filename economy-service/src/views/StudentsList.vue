@@ -3,10 +3,10 @@
         <h1 class="list-title">list of students:</h1>
         <p class="reference">№/name/similarity</p>
         <table class="students-list">
-            <tr v-for="(student, index) in mockedStudents" :key="index" class="item">
+            <tr v-for="({ similarity, student }, index) in mockedStudents" :key="index" class="item">
                 <td class="index">{{ index }}</td>
-                <td class="name">{{ student.name }}</td>
-                <td class="similarity">{{ student.similarity }}%</td>
+                <td class="name">{{ student.firstname }} {{ student.lastname }}</td>
+                <td class="similarity">{{ similarity }}%</td>
             </tr>
         </table>
     </Container>
