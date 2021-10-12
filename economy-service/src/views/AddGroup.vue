@@ -1,10 +1,23 @@
 <template>
   <div>
     <Container :width="300">
-      <h1 class="add-group-title">attach group's photo:</h1>
-      <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
-      <Select is-multiple class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
-      <Button :on-click="submit" class="button">submit</Button>
+      <div v-if="isFetching">
+        <StudentsList
+                :students="recognizedStudents"
+                v-if="recognizedStudents.length"
+        />
+        <div class="loader" v-else>
+          <PulseLoader :loading="true" color="#81007f"/>
+          <p>Processing <br> images...</p>
+        </div>
+      </div>
+      <div v-else>
+        <h1 class="add-group-title">attach group's photo:</h1>
+        <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
+        <Select is-multiple class="select" placeholder="select a group" :options="mockedGroupOptions" @update-option="handleChangeGroupOption"/>
+        <Select class="select" placeholder="select a discipline" :options="mockedDisciplineOptions" @update-option="handleChangeDisciplineOption"/>
+        <Button :on-click="submit" class="button">submit</Button>
+      </div>
     </Container>
     <Navigation active-tab-init="Groups"/>
   </div>
@@ -16,8 +29,10 @@ import FileInput from "../components/shared/atoms/FileInput";
 import Select from "../components/shared/atoms/Select";
 import Button from "../components/shared/atoms/Button";
 import Navigation from "../components/shared/molucules/Navigation";
+import StudentsList from "../components/shared/molucules/StudentsList";
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: "AddGroup",
@@ -27,12 +42,17 @@ export default {
     Select,
     Button,
     Navigation,
+    StudentsList,
+    PulseLoader,
   },
   data() {
     return {
+      isFetching: false,
       groups: '',
       photos: [],
-      mockedOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
+      discipline: '',
+      mockedGroupOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
+      mockedDisciplineOptions: ['Экономика', 'Цифровая экономика', 'Предпринимательство'],
     }
   },
   methods: {
@@ -40,12 +60,18 @@ export default {
     handleChangeFile(value) {
       this.photos = value;
     },
-    handleChangeOption(value) {
+    handleChangeGroupOption(value) {
       this.groups = value;
     },
-    submit() {
-      this.sendGroupData({ groups: this.groups, photos: this.photos });
-    }
+    handleChangeDisciplineOption(value) {
+      this.discipline = value;
+    },
+    async submit() {
+      this.isFetching = true;
+      await this.sendGroupData({ groups: this.groups, photos: this.photos, discipline: this.discipline });}
+  },
+  computed: {
+    ...mapState(['recognizedStudents'])
   }
 }
 </script>
@@ -64,5 +90,17 @@ export default {
 .button {
   width: 100%;
   height: 40px;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  height: 80vh;
+  justify-content: center;
 }
 </style>
