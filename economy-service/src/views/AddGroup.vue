@@ -17,7 +17,7 @@
         <h1 class="add-group-title">attach group's photo:</h1>
         <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
         <Select is-multiple class="select" placeholder="select a group" :options="mockedGroupOptions" @update-option="handleChangeGroupOption"/>
-        <Select class="select" placeholder="select a discipline" :options="mockedDisciplineOptions" @update-option="handleChangeDisciplineOption"/>
+        <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
         <Button :on-click="submit" class="button">submit</Button>
       </div>
     </Container>
@@ -54,11 +54,10 @@ export default {
       photos: [],
       discipline: '',
       mockedGroupOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
-      mockedDisciplineOptions: ['Экономика', 'Цифровая экономика', 'Предпринимательство'],
     }
   },
   methods: {
-    ...mapActions(["sendGroupData"]),
+    ...mapActions(["sendGroupData", "loadDisciplines"]),
     handleChangeFile(value) {
       this.photos = value;
     },
@@ -76,8 +75,14 @@ export default {
       this.isFetching = false;
     }
   },
+  mounted() {
+    this.loadDisciplines();
+  },
   computed: {
-    ...mapState(['recognizedStudents'])
+    ...mapState(['recognizedStudents', 'disciplines']),
+    getDisciplines() {
+      return this.disciplines.map(item => item.title);
+    }
   }
 }
 </script>
