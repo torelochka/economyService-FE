@@ -16,7 +16,7 @@
       <div v-else>
         <h1 class="add-group-title">attach group's photo:</h1>
         <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
-        <Select is-multiple class="select" placeholder="select a group" :options="mockedGroupOptions" @update-option="handleChangeGroupOption"/>
+        <Select is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
         <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
         <Button :on-click="submit" class="button">submit</Button>
       </div>
@@ -50,26 +50,25 @@ export default {
   data() {
     return {
       isFetching: false,
-      groups: '',
       photos: [],
-      discipline: '',
-      mockedGroupOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
+      selectedDiscipline: '',
+      selectedGroups: [],
     }
   },
   methods: {
-    ...mapActions(["sendGroupData", "loadDisciplines"]),
+    ...mapActions(["sendGroupData", "loadDisciplines", "loadGroups"]),
     handleChangeFile(value) {
       this.photos = value;
     },
     handleChangeGroupOption(value) {
-      this.groups = value;
+      this.selectedGroups = value;
     },
     handleChangeDisciplineOption(value) {
-      this.discipline = value;
+      this.selectedDiscipline = value;
     },
     async submit() {
       this.isFetching = true;
-      await this.sendGroupData({ groups: this.groups, photos: this.photos, discipline: this.discipline });
+      await this.sendGroupData({ groups: this.selectedGroups, photos: this.photos, discipline: this.selectedDiscipline });
     },
     goBack() {
       this.isFetching = false;
@@ -77,11 +76,15 @@ export default {
   },
   mounted() {
     this.loadDisciplines();
+    this.loadGroups();
   },
   computed: {
-    ...mapState(['recognizedStudents', 'disciplines']),
+    ...mapState(['recognizedStudents', 'disciplines', 'groups']),
     getDisciplines() {
       return this.disciplines.map(item => item.title);
+    },
+    getGroups() {
+      return this.groups.map(item => item.title);
     }
   }
 }
