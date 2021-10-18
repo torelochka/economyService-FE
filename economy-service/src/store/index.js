@@ -75,6 +75,27 @@ export default new Vuex.Store({
                     }
                 });
         },
+        async sendDiscipline(ctx, { discipline }) {
+            let formData = new FormData();
+            formData.append("title", discipline);
+
+            return fetch(`${process.env.VUE_APP_CORS_URL}${process.env.VUE_APP_BASE_URL}disciplines`, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .catch(err => {
+                    if (err.response) {
+                        console.error('Oh, we get an error response (5xx, 4xx)')
+                    } else if (err.request) {
+                        console.error('Some troubles with a network, pls check your connection')
+                    } else {
+                        console.error('Something went wrong, pls refresh the page')
+                    }
+                });
+        },
     },
     mutations: {
         updateStudents(state, students) {
@@ -85,6 +106,6 @@ export default new Vuex.Store({
         },
         updateGroups(state, groups) {
             state.groups = groups;
-        }
+        },
     }
 })

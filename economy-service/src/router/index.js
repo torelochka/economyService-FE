@@ -21,10 +21,15 @@ const routes = [
     component: () => import(  '../views/AddM8.vue')
   },
   {
+    path: '/add-discipline',
+    name: '',
+    component: () => import(  '../views/AddDiscipline.vue')
+  },
+  {
     path: '/m8s',
     name: '',
     component: () => import(  '../views/StudentsList.vue')
-  }
+  },
 ]
 
 const router = new VueRouter({

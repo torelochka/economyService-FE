@@ -11,8 +11,8 @@
             },
             placeholder: {
                 type: String,
-            }
-        }
+            },
+        },
     }
 </script>
 
