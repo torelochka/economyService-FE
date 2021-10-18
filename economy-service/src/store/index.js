@@ -45,7 +45,6 @@ export default new Vuex.Store({
             fetch(`${process.env.VUE_APP_CORS_URL}${process.env.VUE_APP_BASE_URL}disciplines`)
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
                     ctx.commit('updateDisciplines', result);
                 })
                 .catch(err => {
@@ -62,7 +61,6 @@ export default new Vuex.Store({
             fetch(`${process.env.VUE_APP_CORS_URL}${process.env.VUE_APP_BASE_URL}groups`)
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
                     ctx.commit('updateGroups', result);
                 })
                 .catch(err => {
