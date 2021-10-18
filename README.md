@@ -2,10 +2,10 @@
 
 ### [Here](https://dantrofimov.github.io/economyService-FE/#/) u can find deploy of FE part
 
-### Temporary CORS
+## Temporary CORS
 to enable fetch request, pls request temporary access on https://cors-anywhere.herokuapp.com/corsdemo
 
-List of available routes:
+## List of available routes:
 - `/add-group`
 - `/add-m8`
 - `/m8s`
