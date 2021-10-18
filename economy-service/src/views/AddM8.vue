@@ -4,8 +4,8 @@
             <h1 class="add-group-title">google form for students:</h1>
             <p>here u can find a google form which u can share between ur students:</p>
             <div class="link-block">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0p1riAK-g2z_by-RljCi5pBavlnQGfzVD9kDICsuh1sCojw/viewform" class="link" target="_blank">Google Form</a>
-                <input class="input" ref="formLink" value="https://docs.google.com/forms/d/e/1FAIpQLSf0p1riAK-g2z_by-RljCi5pBavlnQGfzVD9kDICsuh1sCojw/viewform">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUaz2ORkyPe3jXQ7hdrE3UxGTNV4QDHNduDPiVIAieSlXQuQ/viewform" class="link" target="_blank">Google Form</a>
+                <input class="input" ref="formLink" value="https://docs.google.com/forms/d/e/1FAIpQLSdUaz2ORkyPe3jXQ7hdrE3UxGTNV4QDHNduDPiVIAieSlXQuQ/viewform">
                 <button @click="copyLink" class="copy-button">copy link</button>
             </div>
         </Container>
@@ -32,7 +32,7 @@
                 url.setAttribute('type', 'text');
                 url.select();
                 document.execCommand("copy");
-            }
+            w
         }
     }
 </script>
