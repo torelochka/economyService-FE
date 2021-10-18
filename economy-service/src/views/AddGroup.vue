@@ -2,7 +2,7 @@
   <div>
     <Container :width="300">
       <div v-if="isFetching">
-        <div v-if="recognizedStudents.length">
+        <div v-if="hasStudents">
           <StudentsList
                   :students="recognizedStudents"
           />
@@ -16,9 +16,9 @@
       <div v-else>
         <h1 class="add-group-title">attach group's photo:</h1>
         <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
-        <Select is-multiple class="select" placeholder="select a group" :options="mockedGroupOptions" @update-option="handleChangeGroupOption"/>
-        <Select class="select" placeholder="select a discipline" :options="mockedDisciplineOptions" @update-option="handleChangeDisciplineOption"/>
-        <Button :on-click="submit" class="button">submit</Button>
+        <Select is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
+        <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
+        <Button :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
       </div>
     </Container>
     <Navigation active-tab-init="Groups"/>
@@ -50,34 +50,51 @@ export default {
   data() {
     return {
       isFetching: false,
-      groups: '',
       photos: [],
-      discipline: '',
-      mockedGroupOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
-      mockedDisciplineOptions: ['Экономика', 'Цифровая экономика', 'Предпринимательство'],
+      selectedDiscipline: '',
+      selectedGroups: [],
     }
   },
   methods: {
-    ...mapActions(["sendGroupData"]),
+    ...mapActions(["sendGroupData", "loadDisciplines", "loadGroups"]),
     handleChangeFile(value) {
       this.photos = value;
     },
     handleChangeGroupOption(value) {
-      this.groups = value;
+      this.selectedGroups = value;
     },
     handleChangeDisciplineOption(value) {
-      this.discipline = value;
+      this.selectedDiscipline = value;
     },
     async submit() {
       this.isFetching = true;
-      await this.sendGroupData({ groups: this.groups, photos: this.photos, discipline: this.discipline });
+      await this.sendGroupData({ groups: this.selectedGroups, photos: this.photos, discipline: this.selectedDiscipline });
     },
     goBack() {
       this.isFetching = false;
+      this.$router.go();
     }
   },
+  mounted() {
+    this.loadDisciplines();
+    this.loadGroups();
+  },
   computed: {
-    ...mapState(['recognizedStudents'])
+    ...mapState(['recognizedStudents', 'disciplines', 'groups']),
+    getDisciplines() {
+      return this.disciplines.map(item => item.title);
+    },
+    getGroups() {
+      return this.groups.map(item => item.title);
+    },
+    hasStudents() {
+      return this.recognizedStudents?.length > 0
+    },
+    isFormFilled() {
+      return this.photos.length > 0 &&
+                this.selectedDiscipline.length > 0 &&
+                this.selectedGroups.length > 0;
+    }
   }
 }
 </script>

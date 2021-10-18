@@ -21,7 +21,7 @@ export default {
   margin: 0 auto;
   min-height: calc(93vh - 120px);
   width: 200px;
-  padding: 50px 0 70px;
+  padding: 30px 0 70px;
 }
 
 @media (max-width: 320px) {

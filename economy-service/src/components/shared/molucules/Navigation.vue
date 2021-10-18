@@ -21,6 +21,7 @@
                 tabs: [
                     {name: "Groups", route: '/add-group'},
                     {name: "Mates", route: '/add-m8'},
+                    {name: "Subject", route: '/add-discipline'},
                 ]
             }
         },
