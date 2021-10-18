@@ -32,7 +32,7 @@
                 url.setAttribute('type', 'text');
                 url.select();
                 document.execCommand("copy");
-            w
+            }
         }
     }
 </script>
