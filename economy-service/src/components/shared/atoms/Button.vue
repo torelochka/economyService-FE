@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" @click="onClick" class="button">
+    <button :type="type" @click="onClick" :disabled="isDisabled" class="button" :class="isDisabled ? 'disabled' : ''">
         <slot></slot>
     </button>
 </template>
@@ -15,6 +15,10 @@
             onClick: {
                 type: Function,
                 default: () => {},
+            },
+            isDisabled: {
+                type: Boolean,
+                default: false,
             }
         }
     }
@@ -32,5 +36,9 @@
 
 .button:focus {
     outline-offset: 5px;
+}
+
+.disabled {
+    background-color: #a8a8a8;
 }
 </style>

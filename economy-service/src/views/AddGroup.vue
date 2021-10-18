@@ -2,7 +2,7 @@
   <div>
     <Container :width="300">
       <div v-if="isFetching">
-        <div v-if="recognizedStudents.length">
+        <div v-if="hasStudents">
           <StudentsList
                   :students="recognizedStudents"
           />
@@ -18,7 +18,7 @@
         <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
         <Select is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
         <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
-        <Button :on-click="submit" class="button">submit</Button>
+        <Button :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
       </div>
     </Container>
     <Navigation active-tab-init="Groups"/>
@@ -72,6 +72,7 @@ export default {
     },
     goBack() {
       this.isFetching = false;
+      this.$router.go();
     }
   },
   mounted() {
@@ -85,6 +86,14 @@ export default {
     },
     getGroups() {
       return this.groups.map(item => item.title);
+    },
+    hasStudents() {
+      return this.recognizedStudents?.length > 0
+    },
+    isFormFilled() {
+      return this.photos.length > 0 &&
+                this.selectedDiscipline.length > 0 &&
+                this.selectedGroups.length > 0;
     }
   }
 }
