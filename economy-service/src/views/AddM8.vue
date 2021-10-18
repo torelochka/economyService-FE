@@ -1,10 +1,13 @@
 <template>
     <div>
         <Container :width="300">
-            <h1 class="add-group-title">attach photo of each student from the group:</h1>
-            <FileInput isMultiple name="mates" placeholder="d&d or click & select a photos of students..."/>
-            <Select class="select" placeholder="select a group" :options="mockedOptions" @update-option="handleChangeOption"/>
-            <Button class="button">submit</Button>
+            <h1 class="add-group-title">google form for students:</h1>
+            <p>here u can find a google form which u can share between ur students:</p>
+            <div class="link-block">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0p1riAK-g2z_by-RljCi5pBavlnQGfzVD9kDICsuh1sCojw/viewform" class="link" target="_blank">Google Form</a>
+                <input class="input" ref="formLink" value="https://docs.google.com/forms/d/e/1FAIpQLSf0p1riAK-g2z_by-RljCi5pBavlnQGfzVD9kDICsuh1sCojw/viewform">
+                <button @click="copyLink" class="copy-button">copy link</button>
+            </div>
         </Container>
         <Navigation active-tab-init="Mates" />
     </div>
@@ -12,29 +15,23 @@
 
 <script>
     import Container from "../components/shared/atoms/Container";
-    import FileInput from "../components/shared/atoms/FileInput";
-    import Select from "../components/shared/atoms/Select";
-    import Button from "../components/shared/atoms/Button";
     import Navigation from "../components/shared/molucules/Navigation";
 
     export default {
-        name: "AddGroup",
+        name: "AddM8",
         components: {
             Container,
-            FileInput,
-            Select,
-            Button,
             Navigation,
-        },
-        data() {
-            return {
-                group: '',
-                mockedOptions: ['11-901', '11-902', '11-903', '11-904', '11-905'],
-            }
         },
         methods: {
             handleChangeOption(value) {
                 this.group = value;
+            },
+            copyLink() {
+                let url = this.$refs.formLink;
+                url.setAttribute('type', 'text');
+                url.select();
+                document.execCommand("copy");
             }
         }
     }
@@ -47,12 +44,28 @@
         margin-bottom: 35px;
     }
 
-    .select {
-        margin: 20px 0;
+    .link {
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 40px;
     }
 
-    .button {
-        width: 100%;
-        height: 40px;
+    .copy-button {
+        padding: 10px;
+        margin-top: 10px;
+        box-sizing: content-box;
+        height: 60px;
+        width: 80px;
+        font-size: 25px;
+    }
+
+    .link-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input {
+        opacity: 0;
     }
 </style>
