@@ -110,6 +110,7 @@
     /*border-radius: 50%;*/
     height: 45px;
     width: 45px;
+    cursor: pointer;
     font-weight: bold;
     flex-shrink: 0;
     background-color: white;
@@ -119,8 +120,11 @@
 }
 
 .deselect {
+    margin-top: 8px;
     background-color: red;
     color: white;
-    font-size: 25px;
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
 }
 </style>
