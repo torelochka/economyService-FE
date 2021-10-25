@@ -72,6 +72,6 @@
     border: 1px solid black;
     border-radius: 0;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
 }
 </style>
