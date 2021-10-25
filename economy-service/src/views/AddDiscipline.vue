@@ -55,7 +55,7 @@
 .add-group-title {
     font-size: 30px;
     font-weight: 500;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .discipline-wrapper {
@@ -85,7 +85,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
