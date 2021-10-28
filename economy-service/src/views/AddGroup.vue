@@ -91,6 +91,7 @@ export default {
       return this.recognizedStudents?.length > 0
     },
     isFormFilled() {
+      console.log(this.selectedGroups.length);
       return this.photos.length > 0 &&
                 this.selectedDiscipline.length > 0 &&
                 this.selectedGroups.length > 0;

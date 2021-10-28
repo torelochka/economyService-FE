@@ -49,6 +49,7 @@
                 } else {
                     this.currentOption = '';
                 }
+                this.$emit('update-option', this.currentOption)
             },
         },
             computed: {
