@@ -5,7 +5,7 @@
 ## Temporary CORS for development
 to enable fetch request, pls request temporary access on https://cors-anywhere.herokuapp.com/corsdemo
 
-### Set up and run project
+## Set up and run project
 go to `/economy-service` folder's `README.md`
 
 ## List of available routes:
