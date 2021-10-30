@@ -16,7 +16,7 @@ export default {
     setTimeout(() => {
       this.isCompleted = true;
     }, 2000);
-  }
+  },
 };
 </script>
 

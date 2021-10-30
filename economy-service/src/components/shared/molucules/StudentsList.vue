@@ -34,7 +34,7 @@ export default {
     shortSimilarity: function (value) {
       value = value.toString();
       return value.slice(0, 7);
-    }
+    },
   },
 };
 </script>

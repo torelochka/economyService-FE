@@ -106,7 +106,7 @@ export default new Vuex.Store({
           console.error("Something went wrong, pls refresh the page");
         }
       });
-    }
+    },
   },
   mutations: {
     updateStudents(state, students) {
@@ -117,6 +117,6 @@ export default new Vuex.Store({
     },
     updateGroups(state, groups) {
       state.groups = groups;
-    }
+    },
   },
 });

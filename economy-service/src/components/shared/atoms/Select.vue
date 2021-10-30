@@ -56,12 +56,12 @@ export default {
         this.currentOption = "";
       }
       this.$emit("update-option", this.currentOption);
-    }
+    },
   },
   computed: {
     isAll() {
       return this.currentOption.length === this.options.length;
-    }
+    },
   },
 };
 </script>

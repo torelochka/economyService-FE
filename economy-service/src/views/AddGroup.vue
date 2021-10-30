@@ -95,7 +95,7 @@ export default {
     goBack() {
       this.isFetching = false;
       this.$router.go();
-    }
+    },
   },
   mounted() {
     this.loadDisciplines();
@@ -118,7 +118,7 @@ export default {
         this.selectedDiscipline.length > 0 &&
         this.selectedGroups.length > 0
       );
-    }
+    },
   },
 };
 </script>
