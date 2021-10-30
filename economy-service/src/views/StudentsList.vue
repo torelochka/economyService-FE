@@ -40,7 +40,7 @@ export default {
         { name: "Sample Example", similarity: 77 },
       ],
     };
-  },
+  }
 };
 </script>
 

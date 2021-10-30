@@ -69,7 +69,7 @@ export default {
     },
     remove(i) {
       this.filelist.splice(i, 1);
-      let dataTransfer = new DataTransfer();
+      const dataTransfer = new DataTransfer();
       this.filelist.forEach((file) => dataTransfer.items.add(file));
       this.$refs.file.files = dataTransfer.files;
     },

@@ -11,7 +11,7 @@ export default new Vuex.Store({
   },
   actions: {
     async sendGroupData(ctx, { groups, photos, discipline }) {
-      let formData = new FormData();
+      const formData = new FormData();
 
       formData.append("groupNumbers", groups);
       formData.append("discipline", discipline);
@@ -83,7 +83,7 @@ export default new Vuex.Store({
         });
     },
     async sendDiscipline(ctx, { discipline }) {
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append("title", discipline);
 
       return fetch(
@@ -106,7 +106,7 @@ export default new Vuex.Store({
           console.error("Something went wrong, pls refresh the page");
         }
       });
-    },
+    }
   },
   mutations: {
     updateStudents(state, students) {
@@ -117,6 +117,6 @@ export default new Vuex.Store({
     },
     updateGroups(state, groups) {
       state.groups = groups;
-    },
+    }
   },
 });

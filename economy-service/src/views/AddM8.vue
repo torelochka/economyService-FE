@@ -39,7 +39,7 @@ export default {
       this.group = value;
     },
     copyLink() {
-      let url = this.$refs.formLink;
+      const url = this.$refs.formLink;
       url.setAttribute("type", "text");
       url.select();
       document.execCommand("copy");
