@@ -7,12 +7,12 @@
                     <p>Saving <br> discipline...</p>
                 </div>
             </div>
-            <div class="discipline-wrapper" v-else>
+            <form class="discipline-wrapper" v-else>
                 <h1 class="add-group-title">add new discipline:</h1>
                 <p>type a name of the dicipline you teach:</p>
                 <input class="input" id="discipline" name="discipline" placeholder="discipline name" v-model="discipline"/>
-                <Button :is-disabled="discipline.trim().length === 0" :on-click="submit">submit</Button>
-            </div>
+                <Button type="submit" :is-disabled="discipline.trim().length === 0" :on-click="submit">submit</Button>
+            </form>
         </Container>
         <Navigation active-tab-init="Subject"/>
     </div>

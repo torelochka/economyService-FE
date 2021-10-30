@@ -7,13 +7,13 @@
           <p>Handling images<br>g-table will be<br> updated soon...</p>
         </div>
       </div>
-      <div v-else>
+      <form v-else>
         <h1 class="add-group-title">attach group's photo:</h1>
         <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
         <Select all is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
         <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
-        <Button :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
-      </div>
+        <Button type="submit" :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
+      </form>
     </Container>
     <Navigation active-tab-init="Groups"/>
   </div>
