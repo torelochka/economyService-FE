@@ -4,18 +4,44 @@
       <div v-if="isFetching">
         <div class="loader">
           <Complete />
-          <p>Handling images<br>g-table will be<br> updated soon...</p>
+          <p>
+            Handling images<br />g-table will be<br />
+            updated soon...
+          </p>
         </div>
       </div>
       <form v-else>
         <h1 class="add-group-title">attach group's photo:</h1>
-        <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
-        <Select all is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
-        <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
-        <Button type="submit" :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
+        <FileInput
+          is-multiple
+          placeholder="d&d or click & select a photo..."
+          name="group"
+          @change-file="handleChangeFile"
+        />
+        <Select
+          all
+          is-multiple
+          class="select"
+          placeholder="select a group"
+          :options="getGroups"
+          @update-option="handleChangeGroupOption"
+        />
+        <Select
+          class="select"
+          placeholder="select a discipline"
+          :options="getDisciplines"
+          @update-option="handleChangeDisciplineOption"
+        />
+        <Button
+          type="submit"
+          :is-disabled="!isFormFilled"
+          :on-click="submit"
+          class="button"
+          >submit</Button
+        >
       </form>
     </Container>
-    <Navigation active-tab-init="Groups"/>
+    <Navigation active-tab-init="Groups" />
   </div>
 </template>
 
@@ -27,7 +53,7 @@ import Button from "../components/shared/atoms/Button";
 import Navigation from "../components/shared/molucules/Navigation";
 import Complete from "../components/shared/atoms/Complete";
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "AddGroup",
@@ -43,9 +69,9 @@ export default {
     return {
       isFetching: false,
       photos: [],
-      selectedDiscipline: '',
+      selectedDiscipline: "",
       selectedGroups: [],
-    }
+    };
   },
   methods: {
     ...mapActions(["sendGroupData", "loadDisciplines", "loadGroups"]),
@@ -60,35 +86,41 @@ export default {
     },
     async submit() {
       this.isFetching = true;
-      await this.sendGroupData({ groups: this.selectedGroups, photos: this.photos, discipline: this.selectedDiscipline });
+      await this.sendGroupData({
+        groups: this.selectedGroups,
+        photos: this.photos,
+        discipline: this.selectedDiscipline,
+      });
     },
     goBack() {
       this.isFetching = false;
       this.$router.go();
-    }
+    },
   },
   mounted() {
     this.loadDisciplines();
     this.loadGroups();
   },
   computed: {
-    ...mapState(['recognizedStudents', 'disciplines', 'groups']),
+    ...mapState(["recognizedStudents", "disciplines", "groups"]),
     getDisciplines() {
-      return this.disciplines.map(item => item.title);
+      return this.disciplines.map((item) => item.title);
     },
     getGroups() {
-      return this.groups.map(item => item.title);
+      return this.groups.map((item) => item.title);
     },
     hasStudents() {
-      return this.recognizedStudents?.length > 0
+      return this.recognizedStudents?.length > 0;
     },
     isFormFilled() {
-      return this.photos.length > 0 &&
-                this.selectedDiscipline.length > 0 &&
-                this.selectedGroups.length > 0;
-    }
-  }
-}
+      return (
+        this.photos.length > 0 &&
+        this.selectedDiscipline.length > 0 &&
+        this.selectedGroups.length > 0
+      );
+    },
+  },
+};
 </script>
 
 <style scoped>

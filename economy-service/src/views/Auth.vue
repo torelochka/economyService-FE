@@ -1,9 +1,9 @@
 <template>
   <Container :width="250">
     <h1 class="app-title">m8.checker</h1>
-    <img alt="Vue logo" class="eye" src="../assets/eye.gif">
+    <img alt="Vue logo" class="eye" src="../assets/eye.gif" />
     <form action="" class="auth-form">
-      <TextInput name="email" type="email" placeholder="gmail"/>
+      <TextInput name="email" type="email" placeholder="gmail" />
       <TextInput name="password" type="password" placeholder="password" />
       <Button :on-click="() => $router.push('/add-group')">login</Button>
     </form>
@@ -16,13 +16,13 @@ import TextInput from "../components/shared/atoms/TextInput";
 import Button from "../components/shared/atoms/Button";
 
 export default {
-  name: 'Auth',
+  name: "Auth",
   components: {
     Container,
     TextInput,
     Button,
-  }
-}
+  },
+};
 </script>
 
 <style>
