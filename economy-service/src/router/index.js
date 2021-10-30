@@ -1,39 +1,39 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Auth from '../views/Auth.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Auth from "../views/Auth.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Auth',
-    component: Auth
+    path: "/",
+    name: "Auth",
+    component: Auth,
   },
   {
-    path: '/add-group',
-    name: '',
-    component: () => import(  '../views/AddGroup.vue')
+    path: "/add-group",
+    name: "",
+    component: () => import("../views/AddGroup.vue"),
   },
   {
-    path: '/add-m8',
-    name: '',
-    component: () => import(  '../views/AddM8.vue')
+    path: "/add-m8",
+    name: "",
+    component: () => import("../views/AddM8.vue"),
   },
   {
-    path: '/add-discipline',
-    name: '',
-    component: () => import(  '../views/AddDiscipline.vue')
+    path: "/add-discipline",
+    name: "",
+    component: () => import("../views/AddDiscipline.vue"),
   },
   {
-    path: '/m8s',
-    name: '',
-    component: () => import(  '../views/StudentsList.vue')
+    path: "/m8s",
+    name: "",
+    component: () => import("../views/StudentsList.vue"),
   },
-]
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

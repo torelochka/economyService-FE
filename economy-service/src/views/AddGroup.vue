@@ -2,26 +2,46 @@
   <div>
     <Container :width="300">
       <div v-if="isFetching">
-        <div v-if="hasStudents">
-          <StudentsList
-                  :students="recognizedStudents"
-          />
-          <p class="back-link" @click="goBack">&#8656; back to form</p>
-        </div>
-        <div class="loader" v-else>
+        <div class="loader">
           <Complete />
-          <p>Handling images<br>g-table will be<br> updated soon...</p>
+          <p>
+            Handling images<br />g-table will be<br />
+            updated soon...
+          </p>
         </div>
       </div>
-      <div v-else>
+      <form v-else>
         <h1 class="add-group-title">attach group's photo:</h1>
-        <FileInput is-multiple placeholder="d&d or click & select a photo..." name="group" @change-file="handleChangeFile"/>
-        <Select all is-multiple class="select" placeholder="select a group" :options="getGroups" @update-option="handleChangeGroupOption"/>
-        <Select class="select" placeholder="select a discipline" :options="getDisciplines" @update-option="handleChangeDisciplineOption"/>
-        <Button :is-disabled="!isFormFilled" :on-click="submit" class="button">submit</Button>
-      </div>
+        <FileInput
+          is-multiple
+          placeholder="d&d or click & select a photo..."
+          name="group"
+          @change-file="handleChangeFile"
+        />
+        <Select
+          all
+          is-multiple
+          class="select"
+          placeholder="select a group"
+          :options="getGroups"
+          @update-option="handleChangeGroupOption"
+        />
+        <Select
+          class="select"
+          placeholder="select a discipline"
+          :options="getDisciplines"
+          @update-option="handleChangeDisciplineOption"
+        />
+        <Button
+          type="submit"
+          :is-disabled="!isFormFilled"
+          :on-click="submit"
+          class="button"
+          >submit</Button
+        >
+      </form>
     </Container>
-    <Navigation active-tab-init="Groups"/>
+    <Navigation active-tab-init="Groups" />
   </div>
 </template>
 
@@ -31,10 +51,9 @@ import FileInput from "../components/shared/atoms/FileInput";
 import Select from "../components/shared/atoms/Select";
 import Button from "../components/shared/atoms/Button";
 import Navigation from "../components/shared/molucules/Navigation";
-import StudentsList from "../components/shared/molucules/StudentsList";
 import Complete from "../components/shared/atoms/Complete";
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "AddGroup",
@@ -44,16 +63,15 @@ export default {
     Select,
     Button,
     Navigation,
-    StudentsList,
     Complete,
   },
   data() {
     return {
       isFetching: false,
       photos: [],
-      selectedDiscipline: '',
+      selectedDiscipline: "",
       selectedGroups: [],
-    }
+    };
   },
   methods: {
     ...mapActions(["sendGroupData", "loadDisciplines", "loadGroups"]),
@@ -68,35 +86,41 @@ export default {
     },
     async submit() {
       this.isFetching = true;
-      await this.sendGroupData({ groups: this.selectedGroups, photos: this.photos, discipline: this.selectedDiscipline });
+      await this.sendGroupData({
+        groups: this.selectedGroups,
+        photos: this.photos,
+        discipline: this.selectedDiscipline,
+      });
     },
     goBack() {
       this.isFetching = false;
       this.$router.go();
-    }
+    },
   },
   mounted() {
     this.loadDisciplines();
     this.loadGroups();
   },
   computed: {
-    ...mapState(['recognizedStudents', 'disciplines', 'groups']),
+    ...mapState(["recognizedStudents", "disciplines", "groups"]),
     getDisciplines() {
-      return this.disciplines.map(item => item.title);
+      return this.disciplines.map((item) => item.title);
     },
     getGroups() {
-      return this.groups.map(item => item.title);
+      return this.groups.map((item) => item.title);
     },
     hasStudents() {
-      return this.recognizedStudents?.length > 0
+      return this.recognizedStudents?.length > 0;
     },
     isFormFilled() {
-      return this.photos.length > 0 &&
-                this.selectedDiscipline.length > 0 &&
-                this.selectedGroups.length > 0;
-    }
-  }
-}
+      return (
+        this.photos.length > 0 &&
+        this.selectedDiscipline.length > 0 &&
+        this.selectedGroups.length > 0
+      );
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -1,19 +1,19 @@
 <template>
-  <div class="container" :style="{'width' : width + 'px'}">
+  <div class="container" :style="{ width: width + 'px' }">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Container',
+  name: "Container",
   props: {
     width: {
       type: Number,
       default: 200,
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
