@@ -27,10 +27,6 @@ export default new Vuex.Store({
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             })
-                // .then(response => response.json())
-                // .then(result => {
-                //     ctx.commit('updateStudents', result.faceMatches);
-                // })
                 .catch(err => {
                     if (err.response) {
                         console.error('Oh, we get an error response (5xx, 4xx)')

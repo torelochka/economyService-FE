@@ -2,13 +2,7 @@
   <div>
     <Container :width="300">
       <div v-if="isFetching">
-        <div v-if="hasStudents">
-          <StudentsList
-                  :students="recognizedStudents"
-          />
-          <p class="back-link" @click="goBack">&#8656; back to form</p>
-        </div>
-        <div class="loader" v-else>
+        <div class="loader">
           <Complete />
           <p>Handling images<br>g-table will be<br> updated soon...</p>
         </div>
@@ -31,7 +25,6 @@ import FileInput from "../components/shared/atoms/FileInput";
 import Select from "../components/shared/atoms/Select";
 import Button from "../components/shared/atoms/Button";
 import Navigation from "../components/shared/molucules/Navigation";
-import StudentsList from "../components/shared/molucules/StudentsList";
 import Complete from "../components/shared/atoms/Complete";
 
 import { mapActions, mapState } from 'vuex'
@@ -44,7 +37,6 @@ export default {
     Select,
     Button,
     Navigation,
-    StudentsList,
     Complete,
   },
   data() {
